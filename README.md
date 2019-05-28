@@ -25,7 +25,9 @@ Essa é uma implementação simples de uma API Rest. Essa API foi construida par
 *http://localhost/Simple_Rest/put/produtos/id=1,nome=Teste,descricao=Teste,categoria=1*
 
 
-Obs: id é um inteiro, referente ao id (primary key) do produto
+Obs: id é um inteiro, referente ao id (primary key) do produto.
+
+Atenção: essa API não possui controle de acesso, logo só pode ser utilizada para teste.  
 
 ## Instalação em um WebService
 
