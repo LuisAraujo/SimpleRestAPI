@@ -3,5 +3,5 @@ RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . http://localhost/Simple_Rest/produtos/ [L]
+RewriteRule . http://localhost/SimpleRestAPI/produtos/ [L]
 
