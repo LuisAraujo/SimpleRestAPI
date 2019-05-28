@@ -34,3 +34,7 @@ Atenção: essa API não possui controle de acesso, logo só pode ser utilizada 
 É preciso copiar todos os arquivos para um servidor, inclusive o arquivo *.htaccess* para possibilitar o roteamento.
 
 No arquivo *.htaccess* modifique o *http://localhost/SimpleRestAPI/produtos/* pela url do seu servidor.
+
+Execute o sql do arquivo *banco.sql*, na pasta conn para criar o banco de dados. 
+
+verifique as credenciais do seu banco de dados, no arquivo *connecction.php*.
