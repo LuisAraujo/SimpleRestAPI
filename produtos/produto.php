@@ -1,7 +1,7 @@
 <?php
 
-function insertProduto($nome, $descricao, $categoria, $conn){
-	$sql = "insert into produto (id, nome, descricao, categoria) values (NULL, '$nome', '$descricao', '$categoria')";
+function insertProduto($nome, $descricao, $categoria, $preco, $conn){
+	$sql = "insert into produto (id, nome, descricao, preco, categoria) values (NULL, '$nome', '$descricao', '$preco','$categoria')";
 	$result = mysqli_query($conn, $sql);
 	
 	if(mysqli_affected_rows($conn)){
@@ -23,8 +23,8 @@ function deleteProduto($id,$conn){
 	
 }
 
-function updateProduto($id,$nome,$descricao, $categoria, $conn){
-	$sql = "update produto set nome = '$nome', descricao = '$descricao', categoria= '$categoria' where id = '$id'";
+function updateProduto($id,$nome,$descricao, $categoria,$preco, $conn){
+	$sql = "update produto set nome = '$nome', descricao = '$descricao', categoria= '$categoria', preco='$preco' where id = '$id'";
 	$result = mysqli_query($conn, $sql);
 	
 	if(mysqli_affected_rows($conn)){
@@ -46,12 +46,12 @@ function getAllProdutos($conn){
 	
 	for($i = 0; $i < $nr-1; $i++) {
 		$r = mysqli_fetch_assoc($result);
-		$json .=  '{"id":"'.$r["id"].'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "categoria":"'.$r["categoria"].'"},';
+		$json .=  '{"id":"'.$r["id"].'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "preco":"'.$r["preco"].'", "categoria":"'.$r["categoria"].'"},';
 	}
 	
 	$r = mysqli_fetch_assoc($result);
 	
-	$json .= '{"id":"'.$r["id"].'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "categoria":"'.$r["categoria"].'"}]';
+	$json .= '{"id":"'.$r["id"].'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "preco":"'.$r["preco"].'","categoria":"'.$r["categoria"].'"}]';
 	
 	return $json;
 	
@@ -66,7 +66,7 @@ function getProduto($id, $conn){
 		
 	if (mysqli_num_rows($result)> 0) {
 		$r = mysqli_fetch_assoc($result);
-		$json = '{"id":"'.$id.'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "categoria":"'.$r["categoria"].'"}';
+		$json = '{"id":"'.$id.'", "name": "'.$r["nome"].'", "descricao":"'.$r["descricao"].'", "preco":"'.$r["preco"].'","categoria":"'.$r["categoria"].'"}';
 		return $json;
 	}else{
 		return "{}";

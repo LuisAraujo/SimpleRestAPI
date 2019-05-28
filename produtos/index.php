@@ -1,4 +1,7 @@
 <?php
+
+header('Content-Type: application/json');
+
 include "../conn/connection.php";
 include "produto.php";
 
@@ -27,20 +30,23 @@ if($moderequest == "get"){
 	 $nome = "";
 	 $descricao = "";
 	 $categoria = "";
+	 $preco = 0;
 	 
      for($i = 0; $i < count($datarequest); $i++)	{
 		 $datarequest_i = explode("=", $datarequest[$i]); 
 	 
 		 if($datarequest_i[0] == "nome"){
-			$nome = $datarequest_i[1];
+			$nome =  urldecode($datarequest_i[1]); 
 		 }else if($datarequest_i[0] == "descricao"){
-			$descricao = $datarequest_i[1];
+			$descricao = urldecode($datarequest_i[1]);
 		 }else if($datarequest_i[0] == "categoria"){
 			$categoria = $datarequest_i[1];
+		 }else if($datarequest_i[0] == "preco"){
+			$preco = $datarequest_i[1];
 		 }
 	 }
 	 
-	 echo insertProduto($nome, $descricao, $categoria, $conn);
+	 echo insertProduto($nome, $descricao, $categoria, $preco, $conn);
 	 
 }else if($moderequest == "put"){
 	 $datarequest = explode(",", $datarequest);
@@ -49,22 +55,25 @@ if($moderequest == "get"){
 	 $nome = "";
 	 $descricao = "";
 	 $categoria = "";
+	 $preco = 0;
 	 
      for($i = 0; $i < count($datarequest); $i++)	{
 		 $datarequest_i = explode("=", $datarequest[$i]); 
 	
 		 if($datarequest_i[0] == "nome"){
-			$nome = $datarequest_i[1];
+			$nome = urldecode($datarequest_i[1]);
 		 }else if($datarequest_i[0] == "descricao"){
-			$descricao = $datarequest_i[1];
+			$descricao = urldecode($datarequest_i[1]);
 		 }else if($datarequest_i[0] == "categoria"){
 			$categoria = $datarequest_i[1];
+		 }else if($datarequest_i[0] == "preco"){
+			$preco = $datarequest_i[1];
 		 }else if($datarequest_i[0] == "id"){
 			$id = $datarequest_i[1];
 		 }
 	 }
 	 
-	 echo updateProduto($id, $nome, $descricao, $categoria,$conn);
+	 echo updateProduto($id, $nome, $descricao, $categoria, $preco, $conn);
 
 }else if($moderequest == "delete"){
 	if( ( is_numeric($datarequest)? true: false) && (ctype_digit($datarequest) ) ) {
